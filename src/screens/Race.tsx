@@ -6,9 +6,8 @@ import { GateObjects } from '../components/GateObjects';
 import { NumberChoices } from '../components/NumberChoices';
 import { PowerCore } from '../components/PowerCore';
 import { sfx } from '../game/audio';
-import { generateRace, numberWord } from '../game/generator';
+import { generateRace } from '../game/generator';
 import { COMIC_WORDS, randomOf } from '../game/missions';
-import { stopSpeaking, speak } from '../game/voice';
 import type { GateOutcome, GateRecord, GateSpec, RaceResult, SaveData } from '../game/types';
 
 type Phase = 'countdown' | 'play' | 'helper' | 'correct' | 'finish';
@@ -69,7 +68,6 @@ export function Race({ save, onFinish, onQuit }: RaceProps) {
     return () => {
       timeouts.current.forEach((id) => window.clearTimeout(id));
       timeouts.current = [];
-      stopSpeaking();
     };
   }, []);
 
@@ -89,7 +87,7 @@ export function Race({ save, onFinish, onQuit }: RaceProps) {
       }
     }, 760);
     return () => window.clearTimeout(t);
-  }, [countdown, save.spokenName]);
+  }, [countdown]);
 
   /* ------------------------------------------------------------------ new gate */
   useEffect(() => {
@@ -126,10 +124,8 @@ export function Race({ save, onFinish, onQuit }: RaceProps) {
     if (phase !== 'play' || paused) return;
     if (promptedGate.current === gateIndex) return;
     promptedGate.current = gateIndex;
-    const g = gates[gateIndex];
     startAt.current = Date.now();
-    speak(`${g.mission.intro} ${g.mission.question}`);
-  }, [phase, gateIndex, gates, paused]);
+  }, [phase, gateIndex, paused]);
 
   /* --------------------------------------------------------------------- timer */
   useEffect(() => {
@@ -172,7 +168,6 @@ export function Race({ save, onFinish, onQuit }: RaceProps) {
           setHighlight(i);
           setCounted((prev) => ({ ...prev, [i]: i + 1 }));
           sfx('pop');
-          speak(numberWord(i + 1), { interrupt: false });
         },
         850 + i * 620,
       );
@@ -219,7 +214,6 @@ export function Race({ save, onFinish, onQuit }: RaceProps) {
     const next = Object.values(counted).reduce((max, v) => Math.max(max, v), 0) + 1;
     setCounted((prev) => ({ ...prev, [index]: next }));
     sfx('squeak');
-    if (gate.aids.speakCount) speak(numberWord(next), { interrupt: false });
   }
 
   function handlePick(value: number) {
@@ -284,7 +278,6 @@ export function Race({ save, onFinish, onQuit }: RaceProps) {
           className="hud-pause"
           onClick={() => {
             setPaused(true);
-            stopSpeaking();
           }}
           aria-label="Pause"
         >

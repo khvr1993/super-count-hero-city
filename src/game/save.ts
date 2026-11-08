@@ -6,7 +6,6 @@ export function defaultSave(): SaveData {
   return {
     version: 1,
     name: 'Avyan',
-    spokenName: 'Ah-vee-yahn',
     cape: null,
     bolts: 0,
     badges: [],
@@ -14,7 +13,7 @@ export function defaultSave(): SaveData {
     points: 0,
     races: 0,
     avgSolveMs: null,
-    settings: { sound: true, voice: true, timer: true },
+    settings: { sound: true, timer: true },
   };
 }
 

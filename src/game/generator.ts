@@ -1,5 +1,5 @@
 import type { GateOutcome, GateSpec, Mission, Tier } from './types';
-import { NUMBER_WORDS, MISSIONS, randomOf, shuffle } from './missions';
+import { MISSIONS, shuffle } from './missions';
 
 
 export const TIER_INFO: Record<Tier, { min: number; max: number; aids: GateSpec['aids'] }> =
@@ -7,22 +7,22 @@ export const TIER_INFO: Record<Tier, { min: number; max: number; aids: GateSpec[
     1: {
       min: 3,
       max: 5,
-      aids: { speakCount: true, showNumbers: true, showTray: true },
+      aids: { showNumbers: true, showTray: true },
     },
     2: {
       min: 5,
       max: 7,
-      aids: { speakCount: false, showNumbers: true, showTray: true },
+      aids: { showNumbers: true, showTray: true },
     },
     3: {
       min: 6,
       max: 8,
-      aids: { speakCount: false, showNumbers: false, showTray: true },
+      aids: { showNumbers: false, showTray: true },
     },
     4: {
       min: 7,
       max: 10,
-      aids: { speakCount: false, showNumbers: false, showTray: false },
+      aids: { showNumbers: false, showTray: false },
     },
   };
 
@@ -126,22 +126,4 @@ export function applyOutcome(
   }
 
   return { tier: nextTier, points: Math.max(-1, Math.min(1, nextPoints)) };
-}
-
-export function numberWord(n: number): string {
-  return NUMBER_WORDS[n] ?? String(n);
-}
-
-export function randomPraise(name: string): string {
-  const base = randomOf([
-    'Super counting!',
-    'You got it!',
-    'Kapow! Amazing!',
-    'Number power, activate!',
-    'Unstoppable!',
-    'Bolt says: wow!',
-    'Hero City is safe!',
-    'Great counting!',
-  ]);
-  return Math.random() < 0.45 ? `${base} ${name}!` : base;
 }

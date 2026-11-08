@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react';
 
 interface ParentGateProps {
   sound: boolean;
-  voice: boolean;
   timer: boolean;
   name: string;
   tier: number;
@@ -10,11 +9,10 @@ interface ParentGateProps {
   onReset: () => void;
 }
 
-const TIER_LABELS = ['Starting', 'Growing', 'Flying', 'Turbo'];
+const TIER_LABELS = ['Rookie', 'Hero', 'Super', 'Turbo'];
 
 export function ParentGate({
   sound,
-  voice,
   timer,
   name,
   tier,
@@ -110,18 +108,6 @@ export function ParentGate({
                   className={`switch ${sound ? 'switch--on' : ''}`}
                   onClick={() => onPatch({ settings: { sound: !sound } })}
                   aria-pressed={sound}
-                >
-                  <span className="switch-knob" />
-                </button>
-              </div>
-
-              <div className="parent-toggle-row">
-                <span>Voice prompts</span>
-                <button
-                  type="button"
-                  className={`switch ${voice ? 'switch--on' : ''}`}
-                  onClick={() => onPatch({ settings: { voice: !voice } })}
-                  aria-pressed={voice}
                 >
                   <span className="switch-knob" />
                 </button>

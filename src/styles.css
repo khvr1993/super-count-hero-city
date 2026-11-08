@@ -201,6 +201,19 @@ p {
   cursor: pointer;
 }
 
+.pill--level {
+  gap: 6px;
+  cursor: pointer;
+}
+
+.pill-level-name {
+  color: rgba(20, 33, 61, 0.6);
+  font-size: 0.72em;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .pill-icon {
   font-size: 1.05em;
 }
@@ -1292,6 +1305,146 @@ p {
 .badges-hint {
   color: rgba(20, 33, 61, 0.7);
   font-size: clamp(11px, 1.8vh, 15px);
+  font-weight: 800;
+}
+
+/* ============================================================ levels screen */
+.levels-screen {
+  align-items: center;
+  gap: clamp(7px, 1.6vh, 16px);
+}
+
+.levels-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  max-width: 900px;
+  flex: 0 0 auto;
+}
+
+.levels-head h1 {
+  flex: 1;
+  color: #fff;
+  font-size: clamp(18px, 3.2vh, 30px);
+  font-weight: 900;
+  letter-spacing: 0.03em;
+  text-align: center;
+  -webkit-text-stroke: 2px var(--navy);
+  text-shadow: 0 3px 0 var(--navy);
+}
+
+.levels-spacer {
+  width: 48px;
+}
+
+.levels-sub {
+  color: rgba(20, 33, 61, 0.75);
+  font-size: clamp(12px, 1.9vh, 16px);
+  font-weight: 800;
+}
+
+.levels-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(8px, 1.8vh, 20px);
+  width: min(820px, 100%);
+  flex: 1 1 auto;
+  min-height: 0;
+  max-height: 74vh;
+}
+
+.level-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1px, 0.4vh, 5px);
+  padding: clamp(8px, 1.6vh, 18px);
+  overflow: hidden;
+  border: 4px solid var(--navy);
+  border-radius: 26px;
+  background: #fff;
+  color: var(--navy);
+  cursor: pointer;
+  box-shadow: 0 9px 0 rgba(20, 33, 61, 0.28);
+  transition:
+    transform 0.08s ease,
+    box-shadow 0.08s ease;
+}
+
+.level-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--level-color, #3a86ff);
+  opacity: 0.12;
+}
+
+.level-card > * {
+  position: relative;
+}
+
+.level-card:active {
+  transform: translateY(6px);
+  box-shadow: 0 3px 0 rgba(20, 33, 61, 0.28);
+}
+
+.level-card--active {
+  outline: 5px solid var(--yellow);
+  outline-offset: -1px;
+}
+
+.level-card-current {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 2px 9px;
+  border: 2px solid var(--navy);
+  border-radius: 999px;
+  background: var(--yellow);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
+.level-card-emoji {
+  font-size: clamp(26px, 4.6vh, 46px);
+  line-height: 1;
+}
+
+.level-card-tier {
+  color: rgba(20, 33, 61, 0.55);
+  font-size: clamp(9px, 1.4vh, 11px);
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.level-card-name {
+  font-size: clamp(20px, 3.4vh, 32px);
+  font-weight: 900;
+  line-height: 1;
+}
+
+.level-card-tagline {
+  color: var(--level-color);
+  font-size: clamp(12px, 2vh, 18px);
+  font-weight: 900;
+}
+
+.level-card-detail {
+  max-width: 92%;
+  color: rgba(20, 33, 61, 0.65);
+  font-size: clamp(9px, 1.5vh, 13px);
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.levels-hint {
+  color: rgba(20, 33, 61, 0.65);
+  font-size: clamp(10px, 1.6vh, 14px);
   font-weight: 800;
 }
 

@@ -39,41 +39,6 @@ export const MISSIONS: Mission[] = [
   },
 ];
 
-export const NUMBER_WORDS = [
-  'zero',
-  'one',
-  'two',
-  'three',
-  'four',
-  'five',
-  'six',
-  'seven',
-  'eight',
-  'nine',
-  'ten',
-  'eleven',
-  'twelve',
-  'thirteen',
-  'fourteen',
-  'fifteen',
-  'sixteen',
-  'seventeen',
-  'eighteen',
-  'nineteen',
-  'twenty',
-];
-
-export const PRAISE = [
-  'Super counting!',
-  'You got it!',
-  'Kapow! Amazing!',
-  'Number power, activate!',
-  'Unstoppable!',
-  'Bolt says: wow!',
-  'Hero City is safe!',
-  'Great counting!',
-];
-
 export const COMIC_WORDS = ['POW!', 'ZAP!', 'WHOOSH!', 'BAM!', 'KAPOW!', 'BOOM!'];
 
 export function randomOf<T>(list: T[]): T {

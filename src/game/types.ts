@@ -35,7 +35,6 @@ export interface Pt {
 export type Tier = 1 | 2 | 3 | 4;
 
 export interface Aids {
-  speakCount: boolean;
   showNumbers: boolean;
   showTray: boolean;
 }
@@ -64,14 +63,12 @@ export interface RaceResult {
 
 export interface Settings {
   sound: boolean;
-  voice: boolean;
   timer: boolean;
 }
 
 export interface SaveData {
   version: number;
   name: string;
-  spokenName: string;
   cape: CapeId | null;
   bolts: number;
   badges: string[];

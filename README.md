@@ -1,17 +1,17 @@
 # 🦸 Super Count: Hero City
 
-A voice-guided counting game made for **Avyan** (age 5). Captain Avyan rescues Hero City by counting kittens, power cells, pizzas, robots, stars, and balloons before the gate timer runs out.
+A visual counting game made for **Avyan** (age 5). Captain Avyan rescues Hero City by counting kittens, power cells, pizzas, robots, stars, and balloons before the gate timer runs out.
 
 **Play:** https://khvr1993.github.io/super-count-hero-city/
 
-Built as an installable PWA and tuned for iPad. No accounts, no ads, no network calls, no data leaves the device.
+Built as an installable PWA and tuned for iPad. No accounts, no ads, no network calls, no data leaves the device. There is **no voice narration** anywhere in the app.
 
 ---
 
 ## How it plays
 
 1. Pick a cape.
-2. Tap **RACE!**
+2. Tap the **LEVEL** pill to choose a level — **Rookie** (count to 5), **Hero** (to 7), **Super** (to 8), or **Turbo** (to 10). Tapping a level starts the race right away. Or just tap **RACE!** to play the current level.
 3. Tap each object — it hops into the **Power Core**, which teaches one-to-one correspondence. Tap the same object twice and it wiggles ("already counted").
 4. Tap the number to launch to the next rooftop.
 5. Four rooftops per race, then a medal, power bolts, and a new hero badge.
@@ -24,9 +24,9 @@ Built as an installable PWA and tuned for iPad. No accounts, no ads, no network 
 
 **Adaptive difficulty**
 
-Four tiers adjust count range (3→10), counted-object numbering, the power-core tray, answer choices (3→4), and time. Two clean gates in a row moves up a tier; two helped gates moves down one.
+Four tiers adjust count range (3→10), counted-object numbering, the power-core tray, answer choices (3→4), and time. The level picker lets a grown-up (or the hero) choose a starting tier; during play the game still adapts — two clean gates in a row moves up a tier, two helped gates moves down one.
 
-**No reading required** — instructions are spoken, and the counting is narrated as objects are tapped. All flavour commentary is kept visual and silent; a grown-up can turn voice prompts off entirely.
+**Silent by design** — no voice narration at all. The question appears in large text beside the object icon, so a grown-up can read it aloud if needed. Mutable sound effects still celebrate correct answers and gently signal mistakes.
 
 ---
 
@@ -35,7 +35,7 @@ Four tiers adjust count range (3→10), counted-object numbering, the power-core
 Hold the small ⚙️ button on the home screen for ~1.6 seconds:
 
 - Hero name
-- Sound effects / voice prompts / countdown timer toggles
+- Sound effects / countdown timer toggles
 - Manual challenge tier (1–4)
 - Reset progress
 

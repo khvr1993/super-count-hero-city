@@ -1,4 +1,5 @@
 import { Hero } from '../components/Hero';
+import { levelByTier } from '../game/levels';
 import { BADGES } from '../game/types';
 import type { SaveData } from '../game/types';
 import { ParentGate } from './ParentGate';
@@ -6,12 +7,15 @@ import { ParentGate } from './ParentGate';
 interface HomeProps {
   save: SaveData;
   onStart: () => void;
+  onLevels: () => void;
   onBadges: () => void;
   onPatch: (patch: Record<string, unknown>) => void;
   onReset: () => void;
 }
 
-export function Home({ save, onStart, onBadges, onPatch, onReset }: HomeProps) {
+export function Home({ save, onStart, onLevels, onBadges, onPatch, onReset }: HomeProps) {
+  const level = levelByTier(save.tier);
+
   return (
     <div className="screen home">
       <div className="home-top">
@@ -19,6 +23,16 @@ export function Home({ save, onStart, onBadges, onPatch, onReset }: HomeProps) {
           <span className="pill-icon">⚡</span>
           <b>{save.bolts}</b>
         </div>
+        <button
+          type="button"
+          className="pill pill--level"
+          onClick={onLevels}
+          aria-label={`Level ${save.tier}, ${level.name}. Choose level`}
+        >
+          <span className="pill-icon">{level.emoji}</span>
+          <b>LEVEL {save.tier}</b>
+          <span className="pill-level-name">{level.name}</span>
+        </button>
         <button type="button" className="pill pill--badges" onClick={onBadges}>
           <span className="pill-icon">🏅</span>
           <b>
@@ -55,7 +69,6 @@ export function Home({ save, onStart, onBadges, onPatch, onReset }: HomeProps) {
 
       <ParentGate
         sound={save.settings.sound}
-        voice={save.settings.voice}
         timer={save.settings.timer}
         name={save.name}
         tier={save.tier}

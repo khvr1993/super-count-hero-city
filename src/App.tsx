@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
-import { configureVoice, unlockVoice } from './game/voice';
 import { setSoundEnabled, sfx, unlockAudio } from './game/audio';
 import { applyOutcome } from './game/generator';
 import { clearSave, defaultSave, loadSave, persistSave } from './game/save';
 import { BADGES } from './game/types';
-import type { RaceResult, SaveData, Settings } from './game/types';
+import type { RaceResult, SaveData, Settings, Tier } from './game/types';
 import { BadgesScreen } from './screens/BadgesScreen';
 import { CapePicker } from './screens/CapePicker';
 import { Home } from './screens/Home';
+import { LevelSelect } from './screens/LevelSelect';
 import { Race } from './screens/Race';
 import { RaceEnd, type Medal } from './screens/RaceEnd';
 
-type Screen = 'home' | 'cape' | 'race' | 'end' | 'badges';
+type Screen = 'home' | 'cape' | 'race' | 'end' | 'badges' | 'levels';
 
 interface EndState {
   result: RaceResult;
@@ -34,13 +34,11 @@ export default function App() {
 
   useEffect(() => {
     setSoundEnabled(save.settings.sound);
-    configureVoice({ enabled: save.settings.voice });
-  }, [save.settings.sound, save.settings.voice]);
+  }, [save.settings.sound]);
 
   useEffect(() => {
     const unlock = () => {
       unlockAudio();
-      unlockVoice();
     };
     window.addEventListener('pointerdown', unlock, { once: true });
     return () => window.removeEventListener('pointerdown', unlock);
@@ -59,15 +57,16 @@ export default function App() {
 
   function confirmCape(cape: NonNullable<SaveData['cape']>) {
     unlockAudio();
-    unlockVoice();
     sfx('fanfare');
     setSave((prev) => ({ ...prev, cape }));
     setScreen('home');
   }
 
-  function startRace() {
+  function startRace(tier?: Tier) {
     unlockAudio();
-    unlockVoice();
+    if (tier) {
+      setSave((prev) => ({ ...prev, tier, points: 0 }));
+    }
     setRaceKey((k) => k + 1);
     setScreen('race');
   }
@@ -130,6 +129,7 @@ export default function App() {
         <Home
           save={save}
           onStart={startRace}
+          onLevels={() => setScreen('levels')}
           onBadges={() => setScreen('badges')}
           onPatch={patchSave}
           onReset={resetProgress}
@@ -165,6 +165,14 @@ export default function App() {
         <BadgesScreen
           badges={save.badges}
           onBack={() => setScreen(end ? 'end' : 'home')}
+        />
+      ) : null}
+
+      {screen === 'levels' ? (
+        <LevelSelect
+          current={save.tier}
+          onPick={startRace}
+          onBack={() => setScreen('home')}
         />
       ) : null}
     </div>
